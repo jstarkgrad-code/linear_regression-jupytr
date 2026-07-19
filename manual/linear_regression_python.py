@@ -29,6 +29,12 @@ plt.plot(data[[x_col]], model.predict(data[[x_col]]), color="blue")
 plt.title(f'{y_col} vs {x_col}')
 plt.xlabel(x_col)
 plt.ylabel(y_col)
+plt.text(
+    0.05, 0.95,
+	f"y = {model.coef_[0, 0]:.2f}x + {model.intercept_[0]:.2f}\nR^2 = {model.score(data[['YearsExperience']], data[['Salary']]):.3f}",
+    transform=plt.gca().transAxes,
+    va="top"
+)
 
 #save the generated plot as a png file, and show the user in a popup
 plt.savefig("linear_regression_python_output.png")

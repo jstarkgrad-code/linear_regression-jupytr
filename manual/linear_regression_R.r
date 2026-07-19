@@ -24,7 +24,15 @@ plot <- ggplot(data, aes_string(x = xcol, y = ycol)) +
     geom_smooth(method = "lm", colour = 'blue') +
     ggtitle(paste(ycol, 'vs', xcol)) +
     xlab(xcol) +
-    ylab(ycol)
+    ylab(ycol) +
+    annotate(
+        "text", 
+        x = -Inf, y = Inf, 
+        label = paste0(
+            "y = ", round(coef(model)[2], 2), "x + ", round(coef(model)[1], 2), "\nR^2 = ", round(summary(model)$r.squared, 3)
+            ),
+        hjust = -0.05, vjust = 1.5
+     )
 
 #Save the generated plot as a png file, and show the user in a popup (may save the popup as a pdf if unable to display from hardware limitation) 
 ggsave('linear_regression_r_output.png', plot)
