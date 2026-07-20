@@ -47,9 +47,24 @@ cat(sprintf("R-squared: %.4f\n", r_squared))
 cat(sprintf("p-value (Intercept): %.4e\n", p_values["(Intercept)"]))
 cat(sprintf("p-value (%s): %.4e\n", predictor, p_values[predictor]))
 
+intercept <- coef(model)["(Intercept)"]
+slope <- coef(model)[[predictor]]
+formula_text <- sprintf("y = %.2fx + %.2f", slope, intercept)
+r2_text <- sprintf("R² = %.4f", r_squared)
+annotation_text <- paste(formula_text, r2_text, sep = "\n")
+
 plot_obj <- ggplot(data, aes(x = .data[[predictor]], y = .data[[outcome]])) +
   geom_point(color = "steelblue") +
   geom_line(aes(y = predict(model)), color = "darkred", linewidth = 1) +
+  annotate(
+    "text",
+    x = -Inf,
+    y = Inf,
+    label = annotation_text,
+    hjust = -0.02,
+    vjust = 1.1,
+    size = 3.5
+  ) +
   labs(
     title = paste("Linear Regression of", outcome, "on", predictor),
     x = predictor,

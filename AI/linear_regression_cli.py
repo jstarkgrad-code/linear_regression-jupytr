@@ -55,12 +55,26 @@ def main():
 
     fitted_y = model.predict(design_matrix)
 
+    intercept = model.params["const"]
+    slope = model.params[args.predictor]
+    formula_text = f"y = {slope:.2f}x + {intercept:.2f}"
+    r2_text = f"R² = {model.rsquared:.4f}"
+
     plt.figure(figsize=(8, 5))
     plt.scatter(x, y, color="steelblue", edgecolor="white")
     plt.plot(x, fitted_y, color="darkred", linewidth=2)
     plt.title(f"Linear Regression of {args.outcome} on {args.predictor}")
     plt.xlabel(args.predictor)
     plt.ylabel(args.outcome)
+    plt.text(
+        0.02,
+        0.98,
+        f"{formula_text}\n{r2_text}",
+        transform=plt.gca().transAxes,
+        ha="left",
+        va="top",
+        fontsize=10,
+    )
     plt.tight_layout()
     plt.savefig("regression_plot_py.png", dpi=150)
     print("Plot saved to regression_plot_py.png")
