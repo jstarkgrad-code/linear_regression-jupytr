@@ -1,112 +1,69 @@
-# Linear Regression Assignment (Jupyter & CLI)
+README.md
 
-This README was written by the AI agent.
 
-This repository contains a linear regression assignment implemented in **Python** and **R**. It includes Jupyter notebooks, HTML exports, command-line scripts, sample data, and reproducible environment setup files.
 
-## Repository layout
+**Assignment 3** - enhancements to the linear regression plot made in assignment 2. Includes 2 Jupyter notebooks, 2 HTML files, a python script, an R script, 2 output png files, an environment.yml, and a setup file. 
 
-```text
-AI/
-├── linear_regression_python.ipynb   # Python Jupyter notebook
-├── linear_regression_r.ipynb        # R Jupyter notebook
-├── linear_regression_python.html    # HTML export of Python notebook
-├── linear_regression_r.html         # HTML export of R notebook
-├── linear_regression_cli.py         # Python CLI script
-├── linear_regression_cli.R          # R CLI script
-├── regression_data.csv              # Sample dataset
-├── environment.yml                  # Conda environment definition
-├── setup_env.sh                     # One-time environment setup
-├── activate_env.sh                  # Activate env in current shell
-├── use_env.sh                       # Run a command inside the env
-├── start_jupyter.sh                 # Launch JupyterLab
-└── conda_env_init.sh                # Shared Conda initialization
-```
 
-## Dataset
 
-The sample CSV file (`AI/regression_data.csv`) contains:
+**This commit includes the following changes:** 
 
-| Column | Role |
-|--------|------|
-| `YearsExperience` | Predictor (x) |
-| `Salary` | Outcome (y) |
+* slope-intercept equation and R^2 values will now appear on the graph produced by the output
 
-## Environment setup (cluster)
 
-From the `AI/` directory:
 
-```bash
-cd AI
-bash setup_env.sh
-```
+**Repo structure**
 
-After setup, activate the environment in each new terminal:
+* "AI" folder contains files created by the AI agent (Cursor Plus) 
+* "manual" folder contains files created by hand by me
+* each folder has its own environment and setup file 
 
-```bash
-source activate_env.sh
-```
 
-**Note:** On this cluster, `conda activate` alone will not work until the Miniconda module is loaded. Use `source activate_env.sh` or the wrapper scripts below.
 
-### Shortcut commands
+**Requirements and environment**
 
-Run a single command without manually activating:
+* run the setup\_env.sh file and it will use dependencies listed in the environment.yml to create a kernel to run jupyter notebooks and scripts
+* The jupyter notebooks and HTML files have the CSV file hardcoded into them. The python and R scripts require user input of CSV file name, x value, and y value (see "How to run" below)
 
-```bash
-bash use_env.sh jupyter lab --no-browser --port=2000
-bash start_jupyter.sh
-```
 
-## Jupyter notebooks
 
-1. Set up and activate the environment (see above).
-2. Start JupyterLab:
+**How to run (command, inputs)**
 
-```bash
-jupyter lab --no-browser --port=2000
-```
+* environment and setup: 
 
-3. Open a notebook and select the matching kernel:
-   - **Python (assignment2_regression)** for the Python notebook
-   - **R (assignment2_regression)** for the R notebook
+  1. chmod -x setup\_env.sh
+  2. bash setup\_env.sh
+  3. click the link to open jupyter notebooks. In the correct working directory, all files should appear to open and run in jupyter terminal
+* **Running python script**
 
-Each notebook reads the CSV, fits a linear regression model, prints R² and p-values, and displays a scatter plot with the fitted regression line.
+  1. python linear\_regression\_python.py CSV\_file\_name.csv x\_value\_title y\_value\_title
 
-## CLI scripts
+     * *example*: python linear\_regression\_python.py regression\_data.csv YearsExperience Salary
+* **Running R script**
 
-Both CLI scripts take three arguments:
+  1. Rscript linear\_regression\_r.R CSV\_file\_name.csv x\_value\_title y\_value\_title
 
-1. CSV filename (must be in the current working directory)
-2. Predictor column name (x)
-3. Outcome column name (y)
+     * *example*: Rscript linear\_regression\_r.R regression\_data.csv YearsExperience Salary
 
-### Python
 
-```bash
-python linear_regression_cli.py regression_data.csv YearsExperience Salary
-```
 
-Saves plot to `regression_plot_py.png`.
+**Expected outputs and figure explanation**
 
-### R
+* popups should be generated of the linear regression figure and png file should be exported to the working directory
+* Certain hardware may cause on-screen display to fail. In this case, the figure is exported to the working directory as a pdf file. 
 
-```bash
-Rscript linear_regression_cli.R regression_data.csv YearsExperience Salary
-```
 
-Saves plot to `regression_plot_R.png`.
 
-### Example with environment wrapper
+**Version tags**
 
-```bash
-bash use_env.sh python linear_regression_cli.py regression_data.csv YearsExperience Salary
-bash use_env.sh Rscript linear_regression_cli.R regression_data.csv YearsExperience Salary
-```
+* "Assignment2" tag contains the commit history before enhancements were made.
+* "Assignment3-final" tag contains the above information and the commit from the AI execution of the assignment
 
-## Output
 
-Both notebooks and CLI scripts produce:
 
-- **Printed statistics:** R², p-value (Intercept), p-value (predictor)
-- **Plot:** scatter plot with fitted regression line, titled using the outcome and predictor names
+**Author and course information** 
+
+* The repository was made by Josephine Stark for assignment 3 of the course BSGP-7030 at The Ohio State University, taught by Dr. Mike Freitas 
+
+
+
