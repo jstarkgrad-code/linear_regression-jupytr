@@ -14,7 +14,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description=(
             "Read a CSV from the working directory, fit a linear regression, "
-            "print model statistics, and save/display a scatter plot with the fitted line."
+            "and save/display a scatter plot with the fitted line and model statistics."
         )
     )
     parser.add_argument("csv_file", help="CSV file name in the working directory")
@@ -49,16 +49,11 @@ def main():
     design_matrix = sm.add_constant(x)
     model = sm.OLS(y, design_matrix).fit()
 
-    print(f"R-squared: {model.rsquared:.4f}")
-    print(f"p-value (Intercept): {model.pvalues['const']:.4e}")
-    print(f"p-value ({args.predictor}): {model.pvalues[args.predictor]:.4e}")
-
     fitted_y = model.predict(design_matrix)
-
-    intercept = model.params["const"]
     slope = model.params[args.predictor]
-    formula_text = f"y = {slope:.2f}x + {intercept:.2f}"
-    r2_text = f"R² = {model.rsquared:.4f}"
+    intercept = model.params["const"]
+    r_squared = model.rsquared
+    mse = ((y - fitted_y) ** 2).mean()
 
     plt.figure(figsize=(8, 5))
     plt.scatter(x, y, color="steelblue", edgecolor="white")
@@ -67,13 +62,11 @@ def main():
     plt.xlabel(args.predictor)
     plt.ylabel(args.outcome)
     plt.text(
-        0.02,
-        0.98,
-        f"{formula_text}\n{r2_text}",
+        0.05,
+        0.95,
+        f"y = {slope:.2f}x + {intercept:.2f}\nR^2 = {r_squared:.3f}\nMSE = {mse:.2f}",
         transform=plt.gca().transAxes,
-        ha="left",
         va="top",
-        fontsize=10,
     )
     plt.tight_layout()
     plt.savefig("regression_plot_py.png", dpi=150)
