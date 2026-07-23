@@ -8,7 +8,7 @@ README.md
 
 **This commit includes the following changes:** 
 
-* slope-intercept equation and R^2 values will now appear on the graph produced by the output
+* slope-intercept equation, R^2, and mean squared error will now appear on the graph produced by the output
 
 
 
