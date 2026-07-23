@@ -7,6 +7,7 @@ import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 
 #create an error message to the user if user does not submit enough inputs for the function
 if len(sys.argv) !=4: 
@@ -23,6 +24,11 @@ data = pd.read_csv(filename)
 model = LinearRegression()
 model.fit(data[[x_col]], data[[y_col]])
 
+#calculates mean squared error for the linear regression
+y = data[y_col]
+y_predict = model.predict(data[[x_col]])
+mse = mean_squared_error(y, y_predict)
+
 #use the matplotlib functions to create a scatterplot, and use the model made with the linear regression to overlay a line of best fit. Create a title and axis labels using the user's inputs.   
 plt.scatter(data[[x_col]], data[[y_col]], color="red")
 plt.plot(data[[x_col]], model.predict(data[[x_col]]), color="blue")
@@ -31,7 +37,7 @@ plt.xlabel(x_col)
 plt.ylabel(y_col)
 plt.text(
     0.05, 0.95,
-	f"y = {model.coef_[0, 0]:.2f}x + {model.intercept_[0]:.2f}\nR^2 = {model.score(data[['YearsExperience']], data[['Salary']]):.3f}",
+	f"y = {model.coef_[0, 0]:.2f}x + {model.intercept_[0]:.2f}\nR^2 = {model.score(data[['YearsExperience']], data[['Salary']]):.3f}\nMSE = {mse:.2f}",
     transform=plt.gca().transAxes,
     va="top"
 )
