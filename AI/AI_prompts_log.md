@@ -28,3 +28,11 @@ The agent asked some follow up questions before executing my request. Here was m
 
 Note that I also prompted AI to push to GitHub, but I did not save that prompt
 
+**Prompting for addition of MSE**
+→Hello. I have some updates that need to be made to the files in this directory. You may edit and make changes to anything in this directory ONLY. Do not go outside this directory. The first changes to be made are to the notebooks. Make a calculation for mean squared error and print the value on the graph output underneath the slope intercept and R^2. Please ask me for additional parameter clarifications, do not make assumptions. 
+
+  → the next updates are to the CLI python and R scripts. If the scripts do not have any annotations on the graph, add them to the top left corner and include the slope intercept formula, the R^2 value, and the MSE. Also, moving forward, do not look outside of the directory AI - unless you are using outside functions like jupyter or libraries. Do not look in the "manual" directory. Finally, ask me for any parameters that need clarification.
+
+→ please change the notebooks so they don't print anything to the console, just output the annotated graph. Once the update has been made, export them as HTMLs, overwriting the old drafts. Don't delete the notebooks. I will have to submit all notebooks and HTML and scripts. Please ask any clarifying parameters, do not make assumptions  
+
+
