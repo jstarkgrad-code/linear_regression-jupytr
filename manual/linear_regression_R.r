@@ -29,7 +29,7 @@ plot <- ggplot(data, aes_string(x = xcol, y = ycol)) +
         "text", 
         x = -Inf, y = Inf, 
         label = paste0(
-            "y = ", round(coef(model)[2], 2), "x + ", round(coef(model)[1], 2), "\nR^2 = ", round(summary(model)$r.squared, 3)
+            "y = ", round(coef(model)[2], 2), "x + ", round(coef(model)[1], 2), "\nR^2 = ", round(summary(model)$r.squared, 3), "\nMSE = ", round(mean(residuals(model)^2), 2)
             ),
         hjust = -0.05, vjust = 1.5
      )
