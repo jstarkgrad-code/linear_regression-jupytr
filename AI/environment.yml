@@ -1,0 +1,14 @@
+name: assignment2_regression
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - jupyterlab
+  - ipykernel
+  - pandas
+  - matplotlib
+  - statsmodels
+  - r-base
+  - r-irkernel
+  - r-ggplot2
